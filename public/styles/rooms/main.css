@@ -83,7 +83,7 @@ footer{
 
 @media screen and (min-width: 993px) {
     .upper-main{
-        height: 75%;
+        height: 100%;
     }
     main > aside .arrow{
     right: -2.3rem;

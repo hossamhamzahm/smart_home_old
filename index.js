@@ -15,11 +15,16 @@ app.listen(port, ()=> console.log("Listening on port", port));
 
 
 app.get('/', (req, res) => {
-    res.render("home/home");
+    res.render("home");
 })
 
 app.get('/home', (req, res) => {
-    res.render("home/home");
+    res.render("home");
+})
+
+
+app.get('/rooms', (req, res) => {
+    res.render("rooms");
 })
 
 app.get('*', (req, res)=>{

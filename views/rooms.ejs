@@ -9,7 +9,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="icon" href="images/home_icon2.png">
-    <link rel="stylesheet" href="styles/home/main.css">
+    <link rel="stylesheet" href="styles/rooms/main.css">
     <title>Utopia</title>
 </head>
 
@@ -71,79 +71,60 @@
                 <p class="pt-0 m-0 fs-6">Address</p>
             </section>
             <ul class="my-3 list-group fw-bold">
-                <li class="list-group-item btn-left-aside border-0 active"><i class="me-3 fs-5 bi bi-house"></i> Overview</li>
-                <li class="list-group-item bg-transparent  btn-left-aside border-0"><i class="me-3 fs-5 bi bi-image-fill"></i> Gallery</li>
+                <a class="text-decoration-none" href="/home">
+                    <li class="list-group-item bg-transparent btn-left-aside border-0"><i class="me-3 fs-5 bi bi-house"></i> Overview</li>
+                </a>
+                <li class="list-group-item bg-transparent btn-left-aside border-0"><i class="me-3 fs-5 bi bi-image-fill"></i> Gallery</li>
                 <li class="list-group-item bg-transparent btn-left-aside  border-0"><i class="me-3 fs-5 bi bi-gear"></i> Setting</li>
                 <li class="list-group-item bg-transparent btn-left-aside  border-0"><i class="me-3 fs-5 bi bi-clock-history"></i> History</li>
                 <a class="text-decoration-none" href="/rooms">
-                    <li class="list-group-item bg-transparent btn-left-aside  border-0"><i class="me-3 fs-5 bi bi-door-closed fw-bold"></i> Rooms</li>
+                    <li class="list-group-item bg-transparent btn-left-aside active border-0"><i class="me-3 fs-5 bi bi-door-closed fw-bold"></i> Rooms</li>
                 </a>
             </ul>
         </aside>
 
         <!-- right aside -->
         <section class="right-aside d-inline-flex flex-column col-9 p-4">
-            <h3 class="text-white display-6">Overview</h3>
+            <h3 class="text-white display-6 mt-3">Rooms</h3>
+
+            <div class="d-flex col-12 flex-wrap justify-contnet-around mt-3 text-light">
+
+                <section class="d-inline-flex col-12 col-md-6 col-lg-3 mt-3">
+                    <section class="col-11 block-color p-3 me-2 rounded-3">
+                        <h5 class="d-inline-block mb-3">Room 1</h5>
+                        <div class="d-flex justify-content-around align-items-center text-center">
+                            <!-- <h6 class="d-inline-block display-6 col-9 me-1 lg-base">18&deg;C</h6> -->
+                            <i class="bi bi-lightbulb display-5 d-inline-block col-3">
+                                <p class="footer-ele-stat">Turn on lights</p>
+                            </i>
+                            <i class="bi bi-plug display-5 d-inline-block col-3">
+                                <p class="footer-ele-stat">Disable outlets</p>
+                            </i>
+                            <i class="bi bi-people display-5 d-inline-block col-3">
+                                <p class="footer-ele-stat">Ppl counter</p>
+                            </i>
+                        </div>
+                        <button class="btn btn-primary rounded-pill extra-small-btn mt-2">Full control</button>
+                        <!-- <i class="bi bi-thermometer-sun"></i>
+                        <i class="bi bi-thermometer-snow"></i> -->
+                    </section>
+                </section>
+
+
+                <section class="d-inline-flex col-12 col-md-6 col-lg-3 mt-3">
+                    <section class="col-11 block-color p-3 me-2 rounded-3 d-inline-flex flex-column justify-content-center align-items-center">
+                        <h5 class="d-inline-block mb-3">Add Room</h5>
+                        
+                        <a role="button" class="text-decoration-none text-light pointer">
+                            <i class="bi bi-plus-square-dotted display-1"></i>
+                        </a>
+                        <!-- <i class="bi bi-thermometer-sun"></i>
+                                        <i class="bi bi-thermometer-snow"></i> -->
+                    </section>
+                </section>
+
+            </div>
             
-            <section class="row mt-3 justify-content-between">
-
-                <!-- cam section -->
-                <section class="col-lg-7 camera block-color pt-3 px-2 mb-3 mb-lg-3">
-                    <!-- camera head and cam num -->
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h6 class="text-light fw-normal d-inline-block ">Camera</h6>
-                        <div class="btn-toolbar d-inline-block text-end" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group me-2" role="group" aria-label="First group">
-                                <button type="button" class="btn btn-primary">1</button>
-                                <button type="button" class="btn btn-secondary">2</button>
-                                <button type="button" class="btn btn-secondary">3</button>
-                                <button type="button" class="btn btn-secondary">4</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- cam frame -->
-                    <img class="img-fluid py-2" src="images/cam_sample.png" alt="">
-                </section>
-
-
-                <section class="d-flex flex-column col-lg-5 text-light">
-                    <!-- city Weather -->
-                    <section class="block-color p-4">
-                        <!-- Weather header -->
-                        <h6 class="d-inline-block display-6">Weather</h6>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="d-inline-block display-6 col-9">18&deg;C</h6>
-                            <i class="bi bi-wind display-4 d-inline-block col-3"></i>
-                        </div>
-                        <button class="btn btn-primary rounded-pill extra-small-btn">see more info</button>
-                    </section>
-
-                    <section class="d-flex justify-content-between mt-2">
-                        <!-- home temp -->
-                        <section class="block-color col-6 p-3">
-                            <h5 class="d-inline-block">Home Temp</h5>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h6 class="d-inline-block display-6 col-9 me-1 lg-base">18&deg;C</h6>
-                                <i class="bi bi-thermometer-half display-6 d-inline-block col-3"></i>
-                            </div>
-                            <button class="btn btn-primary rounded-pill extra-small-btn">see more info</button>
-                            <!-- <i class="bi bi-thermometer-sun"></i>
-                            <i class="bi bi-thermometer-snow"></i> -->
-                        </section>
-
-                        <!-- total consumption -->
-                        <section class="block-color col-5 py-4 px-2 text-center lh-lg">
-                            <h5 class="d-inline-block fs-6">Consumption</h5>
-
-                            <div class="d-flex justify-content-between">
-                                <h6 class="d-inline-block display-6 fs-4 mx-auto">18 kw/h</h6>
-                                <!-- <i class="bi bi-outlet display-6 d-inline-block col-3"></i> -->
-                            </div>
-                            <button class="btn btn-primary rounded-pill extra-small-btn">see more info</button>
-                        </section>
-                    </section>
-                </section>
-            </section>
         </section>
     </main>
 
