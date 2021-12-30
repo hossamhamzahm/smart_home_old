@@ -1,0 +1,195 @@
+<% layout('/layouts/boilerplate') -%>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded-3 shadow-sm d-none">
+    <div class="container-fluid container-lg rounded-3      justify-content-between">
+        <a class="navbar-brand" href="#">Utopia</a>
+        <a class="navbar-brand" href="#"><i class="bi bi-person-circle"></i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav my-2 my-lg-0" style="--bs-scroll-height: 100px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Link
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Link</a>
+                </li>
+            </ul>
+            
+                <button class="btn btn-outline-success">Login</button>
+        </div>
+    </div>
+</nav>
+
+<!-- main section -->
+<!--p-0 p-xl-3 container-xl-->
+<main class="d-flex m-0 m-auto upper-main">
+
+    <!-- left aside -->
+    <aside class="d-inline-flex flex-column position-relative col-3 pt-4 ps-0">
+        <div class="position-absolute arrow display-4">
+            <i class="bi bi-caret-right-fill"></i>
+        </div>
+        <section class="mx-auto text-center">
+            <img class="mx-auto rounded-circle w-50" src="/images/house_profile_pic.png" alt="">
+            <h6 class="pt-3">My Home</h6>
+            <p class="pt-0 m-0 fs-6">Address</p>
+        </section>
+        <ul class="my-3 list-group fw-bold">
+            <a class="text-decoration-none" href="/home">
+                <li class="list-group-item bg-transparent btn-left-aside border-0"><i class="me-3 fs-5 bi bi-house"></i> Overview</li>
+            </a>
+            <li class="list-group-item bg-transparent btn-left-aside border-0"><i class="me-3 fs-5 bi bi-image-fill"></i> Gallery</li>
+            <li class="list-group-item bg-transparent btn-left-aside  border-0"><i class="me-3 fs-5 bi bi-gear"></i> Setting</li>
+            <li class="list-group-item bg-transparent btn-left-aside  border-0"><i class="me-3 fs-5 bi bi-clock-history"></i> History</li>
+            <a class="text-decoration-none" href="/rooms">
+                <li class="list-group-item bg-transparent btn-left-aside active border-0"><i class="me-3 fs-5 bi bi-door-closed fw-bold"></i> Rooms</li>
+            </a>
+        </ul>
+    </aside>
+
+    <!-- right aside -->
+    <section class="right-aside flex-column justify-content-center align-items-center col-9 p-4">
+        <!-- <h3 class="text-white display-6 mt-3">Rooms</h3> -->
+
+        <div class="d-flex col-12 justify-content-center flex-wrap mt-3">
+
+            <section class="d-inline-flex justify-content-center col-12 col-md-10 col-lg-8 mt-3 text-light">
+                <form action="/rooms" method="post" class="col-11 block-color p-3 me-2 rounded-3">
+
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control bg-transparent text-light" id="floatingInput" name="room_name">
+                        <label for="floatingInput" class="text-light">Room Name</label>
+                    </div>
+                    
+                    <!-- <div class="col-12 d-flex flex-wrap">
+                        <div class="col-12 col-lg-6">
+                            <div class="form-floating p-0 m-0 mb-3 col-lg-11">
+                                <input type="text" class="form-control bg-transparent text-light" id="floatingInput"
+                                    placeholder="name@example.com">
+                                <label for="floatingInput" class="text-light">Number of light pins</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-floating p-0 m-0 mb-3">
+                                <input type="text" class="form-control bg-transparent text-light" id="floatingInput"
+                                    placeholder="name@example.com">
+                                <label for="floatingInput" class="text-light">Number of outlets pins</label>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-12 d-flex flex-wrap">
+                        <% //pins = [3, 5, 7, 8, 10, 11, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 26, 29, 31, 32, 33, 35, 36, 37, 38, 40] %> 
+                        <% for(let pin of pins){ %> 
+                            <div class="col-6 col-md-4 d-inline-flex mb-1">
+                                <div class="col-11 <%= pin.availability ? "color-dark" : "bg-secondary"%> rounded-2 p-2">
+                                    <p class="lead">
+                                        Pin <%= pin.pin_num %>
+                                    </p>
+                                    <div class="color-text">
+                                        <label class="form-check-label" for=<%=`pins[pin_${pin.pin_num}]`%>>
+                                            Outlet
+                                        </label>
+                                        <input class="form-check-input float-end" type="radio" value="outlet" name=<%=`pins[pin_${pin.pin_num}]`%> <%= pin.availability ? "" : "disabled"%> >
+                                        <div>
+                                            <label class="form-check-label" for=<%=`pins[pin_${pin.pin_num}]`%>>
+                                                Light
+                                            </label>
+                                            <input class="form-check-input float-end" type="radio" value="light" name=<%=`pins[pin_${pin.pin_num}]`%> <%= pin.availability ? "" : "disabled" %>>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        <% } %> 
+                    </div>
+
+                    
+                    <button class="btn btn-primary rounded-pill mt-2 float-end">Next</button>
+                    <!-- 
+                        <div class="d-flex justify-content-around align-items-center text-center">
+                            <i class="bi bi-lightbulb display-5 d-inline-block col-3">
+                                <p class="footer-ele-stat">Turn on lights</p>
+                            </i>
+                            <i class="bi bi-plug display-5 d-inline-block col-3">
+                                <p class="footer-ele-stat">Disable outlets</p>
+                            </i>
+                            <i class="bi bi-people display-5 d-inline-block col-3">
+                                <p class="footer-ele-stat">Ppl counter</p>
+                            </i>
+                        </div>
+                    -->
+                    <!-- <i class="bi bi-thermometer-sun"></i>
+                    <i class="bi bi-thermometer-snow"></i> -->
+                </form action="/rooms" method="post">
+            </section>
+
+
+        </div>
+        
+    </section>
+</main>
+
+<footer class="d-flex justify-content-center align-items-center col-12 flex-wrap">
+    
+    <section class="block-color d-inline-flex justify-content-between align-items-center col-5 col-lg-2  rounded-3 p-2 me-4">
+        <i class="bi bi-lightbulb-off display-6 text-light me-2 col-3"></i>
+        <div class="col-6 justify-content-between align-items-center me-1">
+            <p class="text-light m-0">Lights</p>
+            <p class="footer-ele-stat m-0">Turn off <br> all lights</p>
+            <!-- <p class="footer-ele-stat m-0">June 28, 2020</p> -->
+            <!-- <i class="bi bi-thermometer-half display-6 d-inline-block col-3"></i> -->
+        </div>
+        <button class="btn btn-primary align-self-start"></button>
+        <!-- <div class="form-check form-switch col-1 align-self-start">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+        </div> -->
+    </section>
+
+    <section class="block-color d-inline-flex justify-content-between align-items-center col-5 col-lg-2 rounded-3 p-2 my-2 me-4">
+        <i class="bi bi-plug display-6 text-light me-2 col-3"></i>
+        <div class="col-6 justify-content-between align-items-center me-1">
+            <p class="text-light m-0">Outlets</p>
+            <p class="footer-ele-stat m-0">Active since</p>
+            <p class="footer-ele-stat m-0">June 28, 2020</p>
+            <!-- <i class="bi bi-thermometer-half display-6 d-inline-block col-3"></i> -->
+        </div>
+        <div class="form-check form-switch col-1 align-self-start">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+        </div>
+    </section>
+
+    <section class="block-color d-inline-flex justify-content-between align-items-center col-5 col-lg-2 p-2 rounded-3">
+        <i class="bi bi-door-open display-6 text-light me-2 col-3"></i>
+        <div class="col-6 justify-content-between align-items-center me-1">
+            <p class="text-light m-0">Lock doors</p>
+            <p class="footer-ele-stat m-0">Active since</p>
+            <p class="footer-ele-stat m-0">June 28, 2020</p>
+            <!-- <i class="bi bi-thermometer-half display-6 d-inline-block col-3"></i> -->
+        </div>
+        <div class="form-check form-switch col-1 align-self-start">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+        </div>
+    </section>
+</footer>

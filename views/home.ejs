@@ -1,210 +1,80 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="icon" href="images/home_icon2.png">
-    <link rel="stylesheet" href="styles/home/main.css">
-    <title>Utopia</title>
-</head>
+<% layout('/layouts/boilerplate') -%>
 
 
-<body class="vh-100">
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded-3 shadow-sm d-none">
-        <div class="container-fluid container-lg rounded-3      justify-content-between">
-            <a class="navbar-brand" href="#">Utopia</a>
-            <a class="navbar-brand" href="#"><i class="bi bi-person-circle"></i></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav my-2 my-lg-0" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Link
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Link</a>
-                    </li>
-                </ul>
-                
-                    <button class="btn btn-outline-success">Login</button>
-            </div>
-        </div>
-    </nav>
+<main class="d-flex m-0 m-auto upper-main">
+    <!-- left aside -->
+    <%- include("partials/left_aside", {active: "overview"}) %>
 
-    <!-- main section -->
-    <main class="d-flex m-0 m-auto upper-main">
+    <!-- right aside -->
+    <section class="right-aside d-inline-flex flex-column col-9 pe-3 justify-content-center">
+        <!-- <h3 class="text-white display-6 ms-4">Overview</h3> -->
+        
+        <section class="d-flex flex-wrap mt-2 justify-content-center align-items-stretch">
 
-        <!-- left aside -->
-        <aside class="d-inline-flex flex-column position-relative col-3 pt-4 ps-0">
-            <div class="position-absolute arrow display-4">
-                <i class="bi bi-caret-right-fill"></i>
-            </div>
-            <section class="mx-auto text-center">
-                <div class="position-relative rounded-circle w-50 mx-auto">
-                    <img class="ms-auto rounded-circle img-fluid" src="images/house_profile_pic.png" alt="">
-                    <span class="position-absolute top-50 start-100 translate-middle p-2 bg-success border border-light rounded-circle" role="button" title="Connected">
-                        <span class="visually-hidden">New alerts</span>
-                    </span>
-                </div>
-                <h6 class="pt-3">My Home</h6>
-                <p class="pt-0 m-0 fs-6">Address</p>
-            </section>
-            <ul class="my-3 list-group fw-bold">
-                <li class="list-group-item btn-left-aside border-0 active"><i class="me-3 fs-5 bi bi-house"></i> Overview</li>
-                <!-- <li class="list-group-item bg-transparent  btn-left-aside border-0"><i class="me-3 fs-5 bi bi-image-fill"></i> Gallery</li> -->
-                <li class="list-group-item bg-transparent btn-left-aside  border-0"><i class="me-3 fs-5 bi bi-gear"></i> Setting</li>
-                <li class="list-group-item bg-transparent btn-left-aside  border-0"><i class="me-3 fs-5 bi bi-clock-history"></i> History</li>
-                <a class="text-decoration-none" href="/rooms">
-                    <li class="list-group-item bg-transparent btn-left-aside  border-0"><i class="me-3 fs-5 bi bi-door-closed fw-bold"></i> Rooms</li>
-                </a>
-                <a class="text-decoration-none" href="/irrigation">
-                    <li class="list-group-item bg-transparent btn-left-aside  border-0"><i class="me-3 fs-5 bi bi-droplet-half fw-bold"></i> Irrigation</li>
-                </a>
-            </ul>
-        </aside>
-
-        <!-- right aside -->
-        <section class="right-aside d-inline-flex flex-column col-9 pe-3 justify-content-center">
-            <!-- <h3 class="text-white display-6 ms-4">Overview</h3> -->
-            
-            <section class="d-flex flex-wrap mt-2 justify-content-center align-items-stretch">
-
-                <!-- cam section -->
-                <section class="col-lg-7 p-0 mt-2 d-flex flex-column align-items-center">
-                    <!-- camera head and cam num -->
-                    <div class="d-flex flex-column justify-content-start flex-fill align-items-stretch col-11 camera block-color rounded-3">
-                        <div class="d-flex justify-content-between align-items-center pt-3 ps-3 px-2">
-                            <h6 class="text-light d-inline-block display-6">Camera</h6>
-                            <div class="btn-toolbar d-inline-block text-end" role="toolbar" aria-label="Toolbar with button groups">
-                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <button type="button" class="btn btn-primary">1</button>
-                                    <button type="button" class="btn btn-secondary">2</button>
-                                    <button type="button" class="btn btn-secondary">3</button>
-                                    <button type="button" class="btn btn-secondary">4</button>
-                                </div>
+            <!-- cam section -->
+            <section class="col-lg-7 p-0 mt-2 d-flex flex-column align-items-center">
+                <!-- camera head and cam num -->
+                <div class="d-flex flex-column justify-content-start flex-fill align-items-stretch col-11 camera block-color rounded-3">
+                    <div class="d-flex justify-content-between align-items-center pt-3 ps-3 px-2">
+                        <h6 class="text-light d-inline-block display-6">Camera</h6>
+                        <div class="btn-toolbar d-inline-block text-end" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                <button type="button" class="btn btn-primary">1</button>
+                                <button type="button" class="btn btn-secondary">2</button>
+                                <button type="button" class="btn btn-secondary">3</button>
+                                <button type="button" class="btn btn-secondary">4</button>
                             </div>
                         </div>
-                        <!-- cam frame -->
-                        <img class="img-fluid py-2" src="images/cam_sample.png" alt="">
                     </div>
+                    <!-- cam frame -->
+                    <img class="img-fluid py-2" src="images/cam_sample.png" alt="">
+                </div>
+            </section>
+
+            <!-- after cam section -->
+            <section class="d-flex flex-column col-11 col-lg-5 text-light">
+                <!-- city Weather -->
+                <section class="block-color p-4 rounded-3 mt-2">
+                    <!-- Weather header -->
+                    <h6 class="d-inline-block display-6">Weather</h6>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="d-inline-block display-6 col-9"><%= city_temp %>&deg;C</h6>
+                        <i class="bi bi-wind display-4 d-inline-block col-3"></i>
+                    </div>
+                    <a href="https://weather.com/weather/today/" target="_blank" class="btn btn-primary rounded-pill extra-small-btn">see more info</a>
                 </section>
 
-                <!-- after cam section -->
-                <section class="d-flex flex-column col-11 col-lg-5 text-light">
-                    <!-- city Weather -->
-                    <section class="block-color p-4 rounded-3 mt-2">
-                        <!-- Weather header -->
-                        <h6 class="d-inline-block display-6">Weather</h6>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="d-inline-block display-6 col-9">18&deg;C</h6>
-                            <i class="bi bi-wind display-4 d-inline-block col-3"></i>
-                        </div>
-                        <button class="btn btn-primary rounded-pill extra-small-btn">see more info</button>
-                    </section>
+                <section class="d-flex justify-content-between mt-2 align-items-stretch flex-wrap mb-2 mb-lg-0">
+                    <!-- home temp -->
+                    <div class="col-12 col-md-6 mt-2">
+                        <section class="col-12 block-color rounded-3 p-3">
+                            <h5 class="d-inline-block">Home Temp</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="d-inline-block display-6 col-9 me-1 lg-base"><%= home_temp %>&deg;C</h6>
+                                <i class="bi bi-thermometer-half display-6 d-inline-block col-3"></i>
+                            </div>
+                            <button class="btn btn-primary rounded-pill extra-small-btn">see more info</button>
+                            <!-- <i class="bi bi-thermometer-sun"></i>
+                            <i class="bi bi-thermometer-snow"></i> -->
+                        </section>
+                    </div>
 
-                    <section class="d-flex justify-content-between mt-2 align-items-stretch flex-wrap mb-2 mb-lg-0">
-                        <!-- home temp -->
-                        <div class="col-12 col-md-6 mt-2">
-                            <section class="col-12 block-color rounded-3 p-3">
-                                <h5 class="d-inline-block">Home Temp</h5>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h6 class="d-inline-block display-6 col-9 me-1 lg-base">18&deg;C</h6>
-                                    <i class="bi bi-thermometer-half display-6 d-inline-block col-3"></i>
-                                </div>
-                                <button class="btn btn-primary rounded-pill extra-small-btn">see more info</button>
-                                <!-- <i class="bi bi-thermometer-sun"></i>
-                                <i class="bi bi-thermometer-snow"></i> -->
-                            </section>
-                        </div>
+                    <!-- total consumption -->
+                    <div class="col-12 col-md-6 mt-2 d-flex justify-content-end align-items-stretch text-start">
+                        <section class="d-flex flex-column justify-content-around align-items-stretch block-color rounded-3 col-12 col-md-11 p-3 text-start">
+                            <h5 class="d-inline-block fs-6">Consumption</h5>
 
-                        <!-- total consumption -->
-                        <div class="col-12 col-md-6 mt-2 d-flex justify-content-end align-items-stretch text-start">
-                            <section class="d-flex flex-column justify-content-around align-items-stretch block-color rounded-3 col-12 col-md-11 p-3 text-start">
-                                <h5 class="d-inline-block fs-6">Consumption</h5>
-
-                                <div class="d-flex flex-row justify-content-between">
-                                    <h6 class="d-inline-block display-6 fs-4">18 kw/h</h6>
-                                    <!-- <i class="bi bi-outlet display-6 d-inline-block col-3"></i> -->
-                                </div>
-                                <button class="btn btn-primary rounded-pill extra-small-btn">see more info</button>
-                            </section>
-                        </div>
-                    </section>
+                            <div class="d-flex flex-row justify-content-between">
+                                <h6 class="d-inline-block display-6 fs-4">18 kw/h</h6>
+                                <!-- <i class="bi bi-outlet display-6 d-inline-block col-3"></i> -->
+                            </div>
+                            <button class="btn btn-primary rounded-pill extra-small-btn">see more info</button>
+                        </section>
+                    </div>
                 </section>
             </section>
         </section>
-    </main>
+    </section>
+</main>
 
-    <footer class="d-flex justify-content-center align-items-center col-12 flex-wrap">
-        
-        <section class="block-color d-inline-flex justify-content-between align-items-center col-5 col-lg-2  rounded-3 p-2 me-4">
-            <i class="bi bi-lightbulb-off display-6 text-light me-2 col-3"></i>
-            <div class="col-6 justify-content-between align-items-center me-1">
-                <p class="text-light m-0">Lights</p>
-                <p class="footer-ele-stat m-0">Turn off <br> all lights</p>
-                <!-- <p class="footer-ele-stat m-0">June 28, 2020</p> -->
-                <!-- <i class="bi bi-thermometer-half display-6 d-inline-block col-3"></i> -->
-            </div>
-            <button class="btn btn-primary align-self-start"></button>
-            <!-- <div class="form-check form-switch col-1 align-self-start">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-            </div> -->
-        </section>
-
-        <section class="block-color d-inline-flex justify-content-between align-items-center col-5 col-lg-2 rounded-3 p-2 my-2 me-4">
-            <i class="bi bi-plug display-6 text-light me-2 col-3"></i>
-            <div class="col-6 justify-content-between align-items-center me-1">
-                <p class="text-light m-0">Outlets</p>
-                <p class="footer-ele-stat m-0">Active since</p>
-                <p class="footer-ele-stat m-0">June 28, 2020</p>
-                <!-- <i class="bi bi-thermometer-half display-6 d-inline-block col-3"></i> -->
-            </div>
-            <div class="form-check form-switch col-1 align-self-start">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-            </div>
-        </section>
-
-        <section class="block-color d-inline-flex justify-content-between align-items-center col-5 col-lg-2 p-2 rounded-3">
-            <i class="bi bi-door-open display-6 text-light me-2 col-3"></i>
-            <div class="col-6 justify-content-between align-items-center me-1">
-                <p class="text-light m-0">Lock doors</p>
-                <p class="footer-ele-stat m-0">Active since</p>
-                <p class="footer-ele-stat m-0">June 28, 2020</p>
-                <!-- <i class="bi bi-thermometer-half display-6 d-inline-block col-3"></i> -->
-            </div>
-            <div class="form-check form-switch col-1 align-self-start">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-            </div>
-        </section>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-</body>
-</html>
+<%- include("partials/footer") %>

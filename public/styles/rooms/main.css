@@ -63,6 +63,18 @@ main > aside .btn-left-aside:hover{
     border-bottom: 2px solid #2f3b51;
 }
 
+.color-dark{
+    background-color: #232e42;
+}
+
+.color-light{
+    background-color: #2f3b51;
+}
+
+.color-text{
+    color: #8093a5 !important;
+}
+
 .extra-small-btn{
     font-size: .75rem;
     background-color: #232e42;
@@ -81,10 +93,12 @@ footer{
 }
 
 
+.upper-main{
+    height: 100%;
+}
+
 @media screen and (min-width: 993px) {
-    .upper-main{
-        height: 100%;
-    }
+    
     main > aside .arrow{
     right: -2.3rem;
     }

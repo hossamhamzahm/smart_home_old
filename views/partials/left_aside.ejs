@@ -1,0 +1,38 @@
+<!-- left aside -->
+<aside class="d-inline-flex flex-column position-relative col-3 pt-4 ps-0">
+    <div class="position-absolute arrow display-4">
+        <i class="bi bi-caret-right-fill"></i>
+    </div>
+    <section class="mx-auto text-center">
+        <div class="position-relative rounded-circle w-50 mx-auto">
+            <img class="ms-auto rounded-circle img-fluid" src="images/house_profile_pic.png" alt="">
+            <span
+                class="position-absolute top-50 start-100 translate-middle p-2 bg-success border border-light rounded-circle"
+                role="button" title="Connected">
+                <span class="visually-hidden">New alerts</span>
+            </span>
+        </div>
+        <h6 class="pt-3">My Home</h6>
+        <p class="pt-0 m-0 fs-6">Address</p>
+    </section>
+    <ul class="my-3 list-group fw-bold">
+        <a class="text-decoration-none" href="/home">
+            <li class="list-group-item bg-transparent btn-left-aside <%= (active==='overview') ? 'active' : '' %> border-0">
+                <i class="me-3 fs-5 bi bi-house"></i> Overview
+            </li>
+        </a>
+        <!-- <li class="list-group-item bg-transparent  btn-left-aside border-0"><i class="me-3 fs-5 bi bi-image-fill"></i> Gallery</li> -->
+        <li class="list-group-item bg-transparent btn-left-aside  <%= (active==='setting') ? 'active' : '' %>  border-0"><i class="me-3 fs-5 bi bi-gear"></i> Setting
+        </li>
+        <li class="list-group-item bg-transparent btn-left-aside  <%= (active==='history') ? 'active' : '' %>  border-0"><i
+                class="me-3 fs-5 bi bi-clock-history"></i> History</li>
+        <a class="text-decoration-none" href="/rooms">
+            <li class="list-group-item bg-transparent btn-left-aside  <%= (active==='rooms') ? 'active' : '' %>  border-0"><i
+                    class="me-3 fs-5 bi bi-door-closed fw-bold"></i> Rooms</li>
+        </a>
+        <a class="text-decoration-none" href="/irrigation">
+            <li class="list-group-item bg-transparent btn-left-aside <%= (active==='irrigation') ? 'active' : '' %> border-0"><i
+                    class='me-3 fs-5 bi bi-droplet-half fw-bold'></i> Irrigation</li>
+        </a>
+    </ul>
+</aside>
