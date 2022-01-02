@@ -8,13 +8,13 @@ const roomSchema = new Schema({
     fan: Number,
     curtain: Number,
     light_pins: [{
-        pin: String,
-        state: Boolean
+        type: mongoose.Types.ObjectId,
+        ref: 'Pin'
     }],
     lights: Boolean,
     outlet_pins: [{
-        pin: String,
-        state: Boolean
+        type: mongoose.Types.ObjectId,
+        ref: "Pin"
     }],
     outlets: Boolean,
     ppl_counter: Number,

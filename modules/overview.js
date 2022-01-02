@@ -17,9 +17,20 @@ const overviewSchema = new Schema({
         name: String,
         add: String
     },
+    garage:{
+        slot1_availability: Boolean,
+        servo_angle: Number,
+    },
+    irrigation:{
+        moisture: Boolean
+    },
     // home:{
     //     name: "My Home",
     //     add: "NU sheikh zayed, Giza"
+    // }
+    // all_pins:{
+    //     lights: Boolean,
+    //     outlets: Boolean
     // }
 })
 

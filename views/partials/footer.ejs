@@ -1,6 +1,6 @@
 <footer class="d-flex justify-content-center align-items-center col-12 flex-wrap">
 
-    <section
+    <form action="/rooms/all_lights" method="get" role="button"
         class="block-color d-inline-flex justify-content-between align-items-center col-5 col-lg-2  rounded-3 p-2 me-4">
         <i class="bi bi-lightbulb-off display-6 text-light me-2 col-3"></i>
         <div class="col-6 justify-content-between align-items-center me-1">
@@ -13,9 +13,10 @@
         <!-- <div class="form-check form-switch col-1 align-self-start">
             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
         </div> -->
-    </section>
+    </form>
+    
 
-    <section
+    <form action="/rooms/all_outlets" method="get" role="button"
         class="block-color d-inline-flex justify-content-between align-items-center col-5 col-lg-2 rounded-3 p-2 my-2 me-4">
         <i class="bi bi-plug display-6 text-light me-2 col-3"></i>
         <div class="col-6 justify-content-between align-items-center me-1">
@@ -27,7 +28,7 @@
         <div class="form-check form-switch col-1 align-self-start">
             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
         </div>
-    </section>
+    </form>
 
     <section class="block-color d-inline-flex justify-content-between align-items-center col-5 col-lg-2 p-2 rounded-3">
         <i class="bi bi-door-open display-6 text-light me-2 col-3"></i>
@@ -44,3 +45,4 @@
 </footer>
 
 
+<script src="/js/rooms/room.js"></script>

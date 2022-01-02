@@ -1,0 +1,93 @@
+<% layout('/layouts/boilerplate') -%>
+<link rel="stylesheet" href="/styles/rooms/main.css">
+<title>Rooms</title>
+
+
+<main class="d-flex m-0 m-auto upper-main">
+    <!-- left aside -->
+    <%- include("../partials/left_aside", {active: 'rooms'} ) %>
+
+    <!-- right aside -->
+    <section class="right-aside d-inline-flex flex-column justify-content-center align-items-center col-9 p-4">
+        <h3 class="text-white display-6 mt-3"><%= room.name %>'s room</h3>
+
+        <div class="d-flex col-12 justify-content-center flex-wrap mt-3 text-light">
+
+            <% for(let light_pin of room.light_pins){ %> 
+                <section class="d-inline-flex justify-content-center col-12 col-md-6 col-lg-3 mt-3">
+                    <section class="col-11 block-color p-3 me-2 rounded-3">
+                        <h5 class="d-inline-block mb-3">Lamp-<%= light_pin.pin_num %></h5>
+                        <div class="d-flex justify-content-around align-items-center text-center">
+                            <!-- <h6 class="d-inline-block display-6 col-9 me-1 lg-base">18&deg;C</h6> -->
+
+
+                            <% if(light_pin.state){ %> 
+                                <form class="bi bi-lightbulb-off display-5 d-inline-block col-3" role="button"
+                                    action="/rooms/<%= room._id %>/pin/<%= light_pin.pin_num %>" method="post">
+                                    <p class="footer-ele-stat mt-2">Click to turn off</p>
+                                </form>
+                                
+                            <% }else{ %> 
+                                <form class="bi bi-lightbulb display-5 d-inline-block col-3" role="button" action="/rooms/<%= room._id %>/pin/<%= light_pin.pin_num %>" method="post">
+                                    <p class="footer-ele-stat mt-2">Click to turn on</p>
+                                </form>
+                            <% } %> 
+                        </div>
+                        <!-- <button class="btn btn-primary rounded-pill extra-small-btn mt-2">Full control</button> -->
+                        <!-- <i class="bi bi-thermometer-sun"></i>
+                                        <i class="bi bi-thermometer-snow"></i> -->
+                    </section>
+                </section>
+            <% } %> 
+
+
+
+            <% for(let outlet_pin of room.outlet_pins){ %>
+                <section class="d-inline-flex justify-content-center col-12 col-md-6 col-lg-3 mt-3">
+                    <section class="col-11 block-color p-3 me-2 rounded-3">
+                        <h5 class="d-inline-block mb-3">Outlet-<%= outlet_pin.pin_num %></h5>
+                        <div class="d-flex justify-content-around align-items-center text-center">
+                            <% if(outlet_pin.state){ %> 
+                                <form class="bi bi-plug display-5 d-inline-block col-3" role="button"
+                                    action="/rooms/<%= room._id %>/pin/<%= outlet_pin.pin_num %>" method="post">
+                                    <p class="footer-ele-stat">Disable outlet</p>
+                                </form>
+                            <% }else{ %> 
+                                <form class="bi bi-outlet display-5 d-inline-block col-3" role="button"
+                                    action="/rooms/<%= room._id %>/pin/<%= outlet_pin.pin_num %>" method="post">
+                                    <p class="footer-ele-stat">Enable outlet</p>
+                                </form>
+                            <% } %> 
+
+                        </div>
+                        <!-- <button class="btn btn-primary rounded-pill extra-small-btn mt-2">Full control</button> -->
+                        <!-- <i class="bi bi-thermometer-sun"></i>
+                                        <i class="bi bi-thermometer-snow"></i> -->
+                    </section>
+                </section>
+            <% } %> 
+
+
+            <!-- <i class="bi bi-people display-5 d-inline-block col-3" role="button">
+                <p class="footer-ele-stat">counter <%= room.ppl_counter %>
+                </p>
+            </i> -->
+
+            <section class="d-inline-flex justify-content-center col-12 col-md-6 col-lg-3 mt-3">
+                <section class="col-11 block-color p-3 me-2 rounded-3 d-inline-flex flex-column justify-content-center align-items-center">
+                    <h5 class="d-inline-block mb-3">Add Device</h5>
+                    
+                    <a href="#" role="button" class="text-decoration-none text-light pointer">
+                        <i class="bi bi-plus-square-dotted display-1"></i>
+                    </a>
+                    <!-- <i class="bi bi-thermometer-sun"></i>
+                                    <i class="bi bi-thermometer-snow"></i> -->
+                </section>
+            </section>
+
+        </div>
+        
+    </section>
+</main>
+
+<script src="/js/rooms/room.js"></script>

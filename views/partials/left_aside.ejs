@@ -5,7 +5,7 @@
     </div>
     <section class="mx-auto text-center">
         <div class="position-relative rounded-circle w-50 mx-auto">
-            <img class="ms-auto rounded-circle img-fluid" src="images/house_profile_pic.png" alt="">
+            <img class="ms-auto rounded-circle img-fluid" src="/images/house_profile_pic.png" alt="">
             <span
                 class="position-absolute top-50 start-100 translate-middle p-2 bg-success border border-light rounded-circle"
                 role="button" title="Connected">
@@ -22,17 +22,26 @@
             </li>
         </a>
         <!-- <li class="list-group-item bg-transparent  btn-left-aside border-0"><i class="me-3 fs-5 bi bi-image-fill"></i> Gallery</li> -->
-        <li class="list-group-item bg-transparent btn-left-aside  <%= (active==='setting') ? 'active' : '' %>  border-0"><i class="me-3 fs-5 bi bi-gear"></i> Setting
-        </li>
+        
+<!-- 
         <li class="list-group-item bg-transparent btn-left-aside  <%= (active==='history') ? 'active' : '' %>  border-0"><i
-                class="me-3 fs-5 bi bi-clock-history"></i> History</li>
+        class="me-3 fs-5 bi bi-clock-history"></i> History</li>
+-->
         <a class="text-decoration-none" href="/rooms">
             <li class="list-group-item bg-transparent btn-left-aside  <%= (active==='rooms') ? 'active' : '' %>  border-0"><i
-                    class="me-3 fs-5 bi bi-door-closed fw-bold"></i> Rooms</li>
+                class="me-3 fs-5 bi bi-door-closed fw-bold"></i> Rooms</li>
+        </a>
+        <a class="text-decoration-none" href="/garage">
+            <li class="list-group-item bg-transparent btn-left-aside  <%= (active==='garage') ? 'active' : '' %>  border-0"><i
+                class="me-3 fs-5 bi-stop-circle fw-bold"></i> Garage</li>
         </a>
         <a class="text-decoration-none" href="/irrigation">
             <li class="list-group-item bg-transparent btn-left-aside <%= (active==='irrigation') ? 'active' : '' %> border-0"><i
-                    class='me-3 fs-5 bi bi-droplet-half fw-bold'></i> Irrigation</li>
+                class='me-3 fs-5 bi bi-droplet-half fw-bold'></i> Irrigation</li>
         </a>
+
+        <li class="list-group-item bg-transparent btn-left-aside  <%= (active==='setting') ? 'active' : '' %>  border-0"><i
+                class="me-3 fs-5 bi bi-gear"></i> Setting
+        </li>
     </ul>
 </aside>

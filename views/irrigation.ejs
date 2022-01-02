@@ -1,0 +1,72 @@
+<% layout('/layouts/boilerplate') -%>
+<link rel="stylesheet" href="/styles/rooms/main.css">
+<title>Irrigation</title>
+
+
+<main class="d-flex m-0 m-auto upper-main">
+    <!-- left aside -->
+    <%- include("./partials/left_aside", {active: 'irrigation'} ) %>
+
+    <!-- right aside -->
+    <section class="right-aside d-inline-flex flex-column justify-content-center align-items-center col-9 p-4">
+        <h3 class="text-white display-6 mt-3">Irrigation</h3>
+
+        <div class="d-flex col-12 justify-content-center flex-wrap mt-3 text-light">
+
+            <section class="d-inline-flex justify-content-center col-12 col-md-6 mt-3">
+                <section class="col-11 block-color p-3 me-2 rounded-3">
+                    <h5 class="d-inline-block mb-3">Plants' Moisture</h5>
+                    <div class="d-flex justify-content-around align-items-center text-center">
+                        <!-- <h6 class="d-inline-block display-6 col-9 me-1 lg-base">18&deg;C</h6> -->
+
+
+                        <% if(overview.irrigation.moisture){ %> 
+                            <i class="bi bi-moisture display-5 d-inline-block">
+                                <p class="footer-ele-stat mt-2">Plants are well irrigated</p>
+                            </i>
+                            
+                        <% }else{ %> 
+                            <i class="bi bi-brightness-alt-high display-5 d-inline-block">
+                                <p class="footer-ele-stat mt-2">Plants need to be irrigated</p>
+                            </i>
+                        <% } %> 
+                        <!-- bi-water -->
+                    </div>
+                    <!-- <i class="bi bi-thermometer-sun"></i>
+                                    <i class="bi bi-thermometer-snow"></i> -->
+                </section>
+            </section>
+
+
+
+                <section class="d-inline-flex justify-content-center col-12 col-md-6 mt-3">
+                    <section class="col-11 block-color p-3 me-2 rounded-3">
+                        <h5 class="d-inline-block mb-3">Manual Irrigation</h5>
+                        <div class="d-flex justify-content-around align-items-center text-center">
+                            <% if(overview.garage.servo_angle){ %> 
+                                <form class="bi bi-dash-circle display-5 d-inline-block" role="button"
+                                    action="/garage" method="post">
+                                    <p class="footer-ele-stat">Disable manual irrigation</p>
+                                </form>
+                            <% }else{ %> 
+                                <form class="bi bi-cloud-drizzle display-5 d-inline-block" role="button"
+                                    action="/garage/" method="post">
+                                    <p class="footer-ele-stat">Enable manual irrigation</p>
+                                </form>
+                            <% } %> 
+
+                        </div>
+                        <!-- <i class="bi bi-thermometer-sun"></i>
+                                        <i class="bi bi-thermometer-snow"></i> -->
+                    </section>
+                </section>
+            <% //} %> 
+
+
+
+        </div>
+        
+    </section>
+</main>
+
+<script src="/js/rooms/room.js"></script>

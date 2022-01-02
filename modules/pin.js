@@ -5,7 +5,9 @@ const Schema = mongoose.Schema;
 const pinSchema = new Schema({
     pin_num: Number,
     availability: Boolean,
-    reserved_to: mongoose.Types.ObjectId
+    state: Boolean,
+    device_type: String,
+    reserved_to_room: mongoose.Types.ObjectId,
 });
 
 module.exports = new mongoose.model("Pin", pinSchema);

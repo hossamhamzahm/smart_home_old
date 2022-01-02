@@ -22,24 +22,31 @@
 
 
                             <% if(room.lights){ %> 
-                                <i class="bi bi-lightbulb-off display-5 d-inline-block col-3" role="button">
+                                <form action="/rooms/<%= room._id %>/all_lights" method="post" class="bi bi-lightbulb-off display-5 d-inline-block col-3"
+                                    role="button">
+                                    <input class="d-none" value="off" name="state" type="text">
                                     <p class="footer-ele-stat">Turn off lights</p>
-                                </i>
+                                </form>
                             <% }else{ %> 
-                                <i class="bi bi-lightbulb display-5 d-inline-block col-3" role="button">
+                                <form action="/rooms/<%= room._id %>/all_lights" method="post"
+                                    class="bi bi-lightbulb display-5 d-inline-block col-3" role="button">
+                                    <input class="d-none" value="on" name="state" type="text">
                                     <p class="footer-ele-stat">Turn on lights</p>
-                                </i>
+                                    
+                                </form>
                             <% } %> 
 
 
                             <% if(room.outlets){ %> 
-                                <i class="bi bi-plug display-5 d-inline-block col-3" role="button">
+                                <form action="/rooms/<%= room._id %>/all_outlets" method="post" class="bi bi-plug display-5 d-inline-block col-3" role="button">
                                     <p class="footer-ele-stat">Disable outlets</p>
-                                </i>
+                                    <input class="d-none" value="off" name="state" type="text">
+                                </form>
                             <% }else{ %> 
-                                <i class="bi bi-outlet display-5 d-inline-block col-3" role="button">
+                                <form action="/rooms/<%= room._id %>/all_outlets" method="post" class="bi bi-outlet display-5 d-inline-block col-3" role="button">
                                     <p class="footer-ele-stat">Enable outlets</p>
-                                </i>
+                                    <input class="d-none" value="on" name="state" type="text">
+                                </form>
                             <% } %> 
 
 
@@ -47,7 +54,7 @@
                                 <p class="footer-ele-stat">counter <%= room.ppl_counter %> </p>
                             </i>
                         </div>
-                        <button class="btn btn-primary rounded-pill extra-small-btn mt-2">Full control</button>
+                        <a href="/rooms/<%= room._id %>" class="btn btn-primary rounded-pill extra-small-btn mt-2">Full control</a>
                         <!-- <i class="bi bi-thermometer-sun"></i>
                                         <i class="bi bi-thermometer-snow"></i> -->
                     </section>
@@ -70,3 +77,5 @@
         
     </section>
 </main>
+
+<script src="/js/rooms/room.js"></script>
