@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
 
 module.exports = router;
 
-
+/*
 new Overview({weather: {
         city_temp: 18,
         last_modified: "00",
@@ -47,4 +47,4 @@ new Overview({weather: {
         all_outlets: true,
         all_doors: true
     },}).save() 
-
+*/
