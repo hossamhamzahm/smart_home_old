@@ -36,8 +36,8 @@ router.get('/', async (req, res) => {
 
 module.exports = router;
 
-/*
-new Ov erview({weather: {
+
+new Overview({weather: {
         city_temp: 18,
         last_modified: "00",
         home_temp: 23
@@ -47,4 +47,4 @@ new Ov erview({weather: {
         all_outlets: true,
         all_doors: true
     },}).save() 
-*/
+
