@@ -15,7 +15,8 @@ const overviewSchema = new Schema({
     },
     home:{
         name: String,
-        add: String
+        add: String,
+        bell: Boolean,
     },
     garage:{
         slot1_availability: Boolean,

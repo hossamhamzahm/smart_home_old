@@ -31,7 +31,20 @@ router.get('/', async(req, res)=>{
 });
 
 
+router.get('/bell', async (req, res) => {
+    const overview = await Overview.findOne();
+    const bell_state = overview.home.bell
+    overview.home.bell = false;
+    overview.save();
+    res.send({ bell: bell_state });
+});
 
+router.post('/bell', async (req, res) => {
+    const overview = await Overview.findOne();
+    overview.home.bell = true;
+    overview.save();
+    res.send("ok");
+});
 
 
 module.exports = router;

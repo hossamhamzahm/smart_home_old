@@ -86,7 +86,7 @@
         }
     }
     setInterval(()=>{
-        fetch("http://localhost:3000/garage/slots")
+        fetch("/garage/slots")
         .then(data => data.json())
         .then(data => update_slot(data))
     }, 500);

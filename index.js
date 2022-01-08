@@ -6,8 +6,12 @@ const homeRouter = require("./routes/home");
 const roomsRouter = require("./routes/rooms")
 const boardRouter = require("./routes/board");
 const Overview = require("./modules/overview")
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/smart_home';
 const garageRouter = require("./routes/garage")
+
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/smart_home';
+//"mongodb+srv://our-first-user:OnUU7y6t6jgOHdyt@cluster0.8dfkx.mongodb.net/smart_home?retryWrites=true&w=majority" //
+
 
 // connecting to mongo on yelp-camp2
 mongoose.connect(dbUrl, {
