@@ -5,29 +5,7 @@
 <!-- main section -->
 <!--p-0 p-xl-3 container-xl-->
 <main class="d-flex m-0 m-auto upper-main">
-
-    <!-- left aside -->
-    <aside class="d-inline-flex flex-column position-relative col-3 pt-4 ps-0">
-        <div class="position-absolute arrow display-4">
-            <i class="bi bi-caret-right-fill"></i>
-        </div>
-        <section class="mx-auto text-center">
-            <img class="mx-auto rounded-circle w-50" src="/images/house_profile_pic.png" alt="">
-            <h6 class="pt-3">My Home</h6>
-            <p class="pt-0 m-0 fs-6">Address</p>
-        </section>
-        <ul class="my-3 list-group fw-bold">
-            <a class="text-decoration-none" href="/home">
-                <li class="list-group-item bg-transparent btn-left-aside border-0"><i class="me-3 fs-5 bi bi-house"></i> Overview</li>
-            </a>
-            <li class="list-group-item bg-transparent btn-left-aside border-0"><i class="me-3 fs-5 bi bi-image-fill"></i> Gallery</li>
-            <li class="list-group-item bg-transparent btn-left-aside  border-0"><i class="me-3 fs-5 bi bi-gear"></i> Setting</li>
-            <li class="list-group-item bg-transparent btn-left-aside  border-0"><i class="me-3 fs-5 bi bi-clock-history"></i> History</li>
-            <a class="text-decoration-none" href="/rooms">
-                <li class="list-group-item bg-transparent btn-left-aside active border-0"><i class="me-3 fs-5 bi bi-door-closed fw-bold"></i> Rooms</li>
-            </a>
-        </ul>
-    </aside>
+    <%- include("../partials/left_aside", {active: 'rooms' } ) %>
 
     <!-- right aside -->
     <section class="right-aside flex-column d-inline-flex justify-content-center align-items-center col-9 p-4">
@@ -88,7 +66,7 @@
                     </div>
 
                     
-                    <button class="btn btn-primary rounded-pill mt-2 float-end">Create</button>
+                    <button class="btn btn-primary rounded-pill mt-2 float-end">Create New Room</button>
                     <!-- 
                         <div class="d-flex justify-content-around align-items-center text-center">
                             <i class="bi bi-lightbulb display-5 d-inline-block col-3">

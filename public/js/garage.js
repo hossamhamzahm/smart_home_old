@@ -11,13 +11,13 @@ forms.forEach((form) => {
 function update_slot(data) {
     if (data.slots[0].slot1) {
         slot_div.innerHTML = `
-            <i class="bi bi-check2-all display-5 d-inline-block" role="button">
+            <i class="bi bi-check2-all display-5 d-inline-block">
                 <p class="footer-ele-stat mt-2">Available slot</p>
             </i>`
     }
     else {
         slot_div.innerHTML =
-            `<i class="bi bi-exclamation-triangle display-5 d-inline-block" role="button" action="/rooms/<%= //room._id %>/pin/<%= //light_pin.pin_num %>" method="post">
+            `<i class="bi bi-exclamation-triangle display-5 d-inline-block" action="/rooms/<%= //room._id %>/pin/<%= //light_pin.pin_num %>" method="post">
                 <p class="footer-ele-stat mt-2">Busy slot</p>
             </i>`
     }
