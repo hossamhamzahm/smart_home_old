@@ -13,6 +13,23 @@
 
         <div class="d-flex col-12 justify-content-center flex-wrap mt-3 text-light">
 
+            <section class="d-inline-flex justify-content-center col-12 col-md-6 col-lg-3 mt-3">
+                <section class="col-11 block-color p-3 me-2 rounded-3">
+                    <h5 class="d-inline-block mb-3">People Counter</h5>
+                    <div id="counter-div" class="d-flex justify-content-around align-items-center text-center">
+                        <i class="bi bi-people display-5 d-inline-block col-3" role="button">
+                            <p class="footer-ele-stat room-counter" data-id="<%= room.id %>">counter <%= room.ppl_counter %>
+                            </p>
+                        </i>
+            
+                    </div>
+                    <a href="/rooms/<%= room._id %>/reset_ppl"
+                        class="btn btn-primary rounded-pill extra-small-btn text-decoration-none mt-2">Reset People Counter</a>
+                    <!-- <i class="bi bi-thermometer-sun"></i>
+                                                                <i class="bi bi-thermometer-snow"></i> -->
+                </section>
+            </section>
+
             <% for(let light_pin of room.light_pins){ %> 
                 <section class="d-inline-flex justify-content-center col-12 col-md-6 col-lg-3 mt-3">
                     <section class="col-11 block-color p-3 me-2 rounded-3">

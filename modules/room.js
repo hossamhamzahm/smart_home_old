@@ -18,6 +18,7 @@ const roomSchema = new Schema({
     }],
     outlets: Boolean,
     ppl_counter: Number,
+    reset_ppl: Boolean
 });
 
 module.exports = new mongoose.model("Room", roomSchema);

@@ -32,6 +32,26 @@ router.get('/all_lights', async (req, res) => {
 })
 
 
+router.get('/ppl_counter/all', async (req, res) => {
+    const rooms = await Room.find();
+    const data = [];
+
+    rooms.forEach(room => {
+        const room_data = {id: room.id, ppl_counter: room.ppl_counter};
+        data.push(room_data);
+    });
+
+    res.send( data );
+})
+
+router.get('/ppl_counter/:id', async (req, res) => {
+    const room = await Room.findById(req.params.id);
+    
+    res.send({ppl_counter: room.ppl_counter});
+})
+
+
+
 router.get('/all_outlets', async (req, res) => {
     const rooms = await Room.find().populate("outlet_pins");
 
@@ -69,6 +89,15 @@ router.post('/:id/all_outlets', async (req, res) => {
     await room.save();
     res.redirect(`/rooms`);
 })
+
+router.get('/:id/reset_ppl', async (req, res) => {
+    const room = await Room.findById(req.params.id);
+
+    room.ppl_counter = true;
+    await room.save();
+    res.redirect(`/rooms/${req.params.id}`);
+});
+
 
 router.get('/:id', async (req, res) => {
     const room = await Room.findById(req.params.id).populate('light_pins').populate('outlet_pins');

@@ -51,7 +51,7 @@
 
 
                             <i class="bi bi-people display-5 d-inline-block col-3" role="button">
-                                <p class="footer-ele-stat">counter <%= room.ppl_counter %> </p>
+                                <p class="footer-ele-stat room-counter" data-id="<%= room.id %>">counter <%= room.ppl_counter %> </p>
                             </i>
                         </div>
                         <a href="/rooms/<%= room._id %>" class="btn btn-primary rounded-pill extra-small-btn mt-2">Full control</a>
@@ -78,4 +78,4 @@
     </section>
 </main>
 
-<script src="/js/rooms/room.js"></script>
+<script src="/js/rooms/index.js"></script>
