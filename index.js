@@ -7,6 +7,7 @@ const roomsRouter = require("./routes/rooms")
 const boardRouter = require("./routes/board");
 const Overview = require("./modules/overview")
 const garageRouter = require("./routes/garage")
+const irrigationRouter = require("./routes/irrigation")
 
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/smart_home';
@@ -42,16 +43,13 @@ app.get('/overview_api', async (req, res) => {
     res.send(overview);
 })
 
-app.get('/irrigation', async (req, res) => {
-    const overview = await Overview.findOne()
-    res.render("irrigation", { overview });
-})
 
 
 app.use('/home', homeRouter);
 app.use("/rooms", roomsRouter);
 app.use("/board", boardRouter);
 app.use("/garage", garageRouter)
+app.use("/irrigation", irrigationRouter)
 
 app.get('*', (req, res)=>{
     res.send("Error 404\nPage is not found :(");

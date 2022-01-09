@@ -23,7 +23,9 @@ const overviewSchema = new Schema({
         servo_angle: Number,
     },
     irrigation:{
-        moisture: Boolean
+        moisture: Boolean,
+        automatic_mode: Boolean,
+        manual_status: Boolean,
     },
     // home:{
     //     name: "My Home",

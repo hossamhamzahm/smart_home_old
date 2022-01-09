@@ -1,4 +1,13 @@
 const moisture_status = document.getElementById("moisture-status");
+const forms = document.querySelectorAll("form");
+
+
+
+forms.forEach((form) => {
+    form.addEventListener('click', e => {
+        form.submit();
+    })
+})
 
 
 

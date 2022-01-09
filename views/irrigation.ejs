@@ -42,20 +42,35 @@
                 <section class="d-inline-flex justify-content-center col-12 col-md-6 mt-3">
                     <section class="col-11 block-color p-3 me-2 rounded-3">
                         <h5 class="d-inline-block mb-3">Manual Irrigation</h5>
-                        <div class="d-flex justify-content-around align-items-center text-center">
-                            <% if(overview.garage.servo_angle){ %> 
+                        <form action="/irrigation/irrigation_mode" method="post" class="form-check form-switch d-inline-block float-end">
+                            <% if(!overview.irrigation.automatic_mode){ %> 
+                            <input class="form-check-input" name="manual" value="1" type="checkbox" id="flexSwitchCheckDefault" checked>
+                            <% } %> 
+                        </form>
+                        <% if(overview.irrigation.automatic_mode){ %>
+                            <div class="d-flex justify-content-around align-items-center text-center">
+                                
+                                <form action="/irrigation/irrigation_mode" method="post" class="bi bi-toggle2-off display-5 d-inline-block">
+                                    <input class="form-check-input d-none" name="manual" value="1" type="checkbox" id="flexSwitchCheckDefault"
+                                        checked>
+                                        <p class="footer-ele-stat">Toggle to enable irrigation</p>
+                                </form>
+                            </div>
+                        <% }else{ %>
+                            <div class="d-flex justify-content-around align-items-center text-center">
+                            <% if(overview.irrigation.manual_status){ %> 
                                 <form class="bi bi-dash-circle display-5 d-inline-block" role="button"
-                                    action="/garage" method="post">
-                                    <p class="footer-ele-stat">Disable manual irrigation</p>
+                                    action="/irrigation/status" method="post">
+                                    <p class="footer-ele-stat">Stop irrigation</p>
                                 </form>
                             <% }else{ %> 
                                 <form class="bi bi-cloud-drizzle display-5 d-inline-block" role="button"
-                                    action="/garage/" method="post">
-                                    <p class="footer-ele-stat">Enable manual irrigation</p>
+                                    action="/irrigation/status/" method="post">
+                                    <p class="footer-ele-stat">Start irrigation</p>
                                 </form>
                             <% } %> 
-
                         </div>
+                        <% } %> 
                         <!-- <i class="bi bi-thermometer-sun"></i>
                                         <i class="bi bi-thermometer-snow"></i> -->
                     </section>
