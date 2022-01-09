@@ -37,9 +37,14 @@ app.get('/', (req, res) => {
     res.redirect("/home");
 })
 
+app.get('/overview_api', async (req, res) => {
+    const overview = await Overview.findOne()
+    res.send(overview);
+})
+
 app.get('/irrigation', async (req, res) => {
-    const overview = await Overview.find()
-    res.render("irrigation", { overview: overview[0] });
+    const overview = await Overview.findOne()
+    res.render("irrigation", { overview });
 })
 
 
