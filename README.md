@@ -1,18 +1,18 @@
-# [Smart Home](https://ecen-smart-home.herokuapp.com/) 
+# [Smart Home](https://ecen-smart-home.herokuapp.com/)
 
-[Smart Home](https://ecen-smart-home.herokuapp.com/) is a full-stack web app that gives full controll to all home lights, outlets, and appliances from any device connected to the internet.
+[Smart Home](https://ecen-smart-home.herokuapp.com/) is a full-stack web app that gives full control to all home lights, outlets, and appliances from any device connected to the internet.
 
-The home is controlled through a Raspberry Pi micro-controller. The Raspberry pi sends requests to the web app to update the status of the sensors (temperature, light, people counters, etc...) and get requests from the app to update the state of lights, devices, and outlets (by controling Raspbery Pi pins).
+The home is controlled through a Raspberry Pi micro-controller. The Raspberry pi sends requests to the web app to update the status of the sensors (temperature, light, people counters, etc...) and get requests from the app to update the state of lights, devices, and outlets (by controlling Raspberry Pi pins).
 **[Learn How to Use](https://ecen-smart-home.herokuapp.com/learn)**
 <br>
-## Smart Home Features:
+## Smart Home Features
 - Display Home teamperature from temperature sensor
-- Featch city weather from real time API
+- Fetch city weather from real time API
 - Count people inside each room and turn off lights automatically if there is no people inside
 - Control each room's light, outlets and devices from any device that has internet access
 - Control all doors
 - Control garage's gate
-- Montior the parking slot availability 
+- Monitor the parking slot availability 
 - Irrigate all home plants automatically and show if plants are moistured or not.
 - Display notifications if the home bell rang
 - Calculate power consumption (under construction)
@@ -22,10 +22,10 @@ The home is controlled through a Raspberry Pi micro-controller. The Raspberry pi
 
 **Technologies used in this project**
 
-- Rasbperry Pi:
+- Raspberry Pi:
   - Python
-  - Raspi-os (linux disrto from Raspberry Pi)
-  - SSH (secure shell was used to control the rasbperry pi without connecting it to a monitor
+  - Raspy-os (linux disrto from Raspberry Pi)
+  - SSH (secure shell was used to control the Raspberry Pi without connecting it to a monitor
 
 - Front-end:
   - HTML
@@ -39,7 +39,7 @@ The home is controlled through a Raspberry Pi micro-controller. The Raspberry pi
   - MongoDB
   - Mongoose
   - EJS
-  - Heroko hosting service
+  - Heroku hosting service
   - Atlas for MongoDB
 
 
@@ -53,19 +53,19 @@ The home is controlled through a Raspberry Pi micro-controller. The Raspberry pi
   - Buzzer
   - Push button
   - Breadboard
-  - Tempaerature sensor
+  - Temperature sensor
 
 <br>
 
-### Hardware Connection:
+### Hardware Connection
 
 ![image info](https://raw.githubusercontent.com/hossamhamzahm/smart_home/main/Smart%20home%20frtzing%20diagram.png)
 
 <br>
 
-### To be done next:
-- implement users model 
-- add authentication and authorization
-- refactor python code
-- implement image processing feature
-- implement power consumption feature
+### To be done next
+- Implement users model
+- Add authentication and authorization
+- Refactor python code
+- Implement image processing feature
+- Implement power consumption feature

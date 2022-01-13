@@ -16,6 +16,10 @@ const roomSchema = new Schema({
         type: mongoose.Types.ObjectId,
         ref: "Pin"
     }],
+    sensor_pins: [{
+        type: mongoose.Types.ObjectId,
+        ref: "Pin"
+    }],
     outlets: Boolean,
     ppl_counter: Number,
     reset_ppl: Boolean

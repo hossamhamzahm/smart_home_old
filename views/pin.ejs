@@ -1,0 +1,92 @@
+<% layout('/layouts/boilerplate') -%>
+<link rel="stylesheet" href="/styles/rooms/main.css">
+<title><%= pin.name %></title>
+
+
+<main class="d-flex m-0 m-auto upper-main">
+    <!-- left aside -->
+    <%- include("./partials/left_aside", {active: 'rooms'} ) %>
+
+    <!-- right aside -->
+    <section class="right-aside d-inline-flex flex-column justify-content-center align-items-center col-9 p-4">
+        <h3 class="text-white display-6 mt-3">Edit <%= pin.name %></h3>
+
+        <div class="d-flex col-12 justify-content-center flex-wrap mt-3 text-light col-12 col-md-9 col-lg-7">
+            <form action="/pins/<%= pin.id %>?_method=PUT" method="post" class="col-11 block-color p-3 me-2 rounded-3">
+            
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control bg-transparent text-light" id="floatingInput" name="name" value="<%= pin.name %>">
+                    <label for="name" class="text-light">Pin Name</label>
+                </div>
+
+                <label class="form-label">
+                    Sensor Configuration
+                </label>
+                <select class="form-select" name="configuration">
+                    <option value="none" selected>For sensors only</option>
+                    <option value="ir-in">IR incrementer sensor</option>
+                    <option value="ir-out">IR decrementer sensor</option>
+                    <option value="in">Input sensor</option>
+                </select>
+
+                <div class="d-flex row-col-4 justify-content-between color-text my-3">
+                    <div>
+                        <label class="form-check-label" for="device_type">
+                            Outlet
+                        </label>
+                        
+                        <input class="form-check-input float-end ms-2" type="radio" value="outlet" name="device_type"
+                        <%= pin.device_type==="outlet" ? "checked" : "" %>>
+                    </div>
+
+                    <div>
+                        <label class="form-check-label" for="device_type">
+                            Light
+                        </label>
+                        <input class="form-check-input float-end ms-2" type="radio" value="light" name="device_type"  <%= pin.device_type==="light" ? "checked" : "" %>>
+                    </div>
+
+                    <div>
+                        <label class="form-check-label" for="device_type">
+                            Sensor
+                        </label>
+                        <input class="form-check-input float-end ms-2" type="radio" value="sensor" name="device_type"
+                        <%= pin.device_type==="sensor" ? "checked" : "" %>>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end align-items-center flex-wrap">
+                    <a href="/rooms/<%= pin.reserved_to_room.id %>" class="btn btn-outline-success rounded-pill mt-2 me-1 col-12 col-sm-4 col-md-3 col-lg-2">Discard</a>
+                    <button class="btn btn-outline-warning rounded-pill mt-2 me-1 col-12 col-sm-4 col-md-3">Edit Pin</button>
+                    <div class="btn btn-outline-danger rounded-pill mt-2 me-1 col-12 col-sm-4 col-md-4" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal">Remove Pin</div>
+                </div>
+            </form>
+
+        </div>
+        
+    </section>
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Removing <%- pin.name %>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to remove pin-<%= pin.pin_num %> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                <form action="/pins/<%= pin.id %>?_method=DELETE" method="post" class="d-inline-block">
+                    <button class="btn btn-outline-danger rounded-pill">Remove Pin</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>const disable_form_click_submission = true; </script>

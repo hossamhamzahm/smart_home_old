@@ -1,11 +1,4 @@
 const slot_div = document.getElementById("slot-div"); 
-const forms = document.querySelectorAll("form");
-
-forms.forEach((form) => {
-    form.addEventListener('click', e => {
-        form.submit();
-    })
-})
 
 
 function update_slot(data) {

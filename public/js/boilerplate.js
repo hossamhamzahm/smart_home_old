@@ -1,6 +1,18 @@
 let timeout_id = 0;
 const toasts1 = document.getElementById("toast1");
 const toast_dismiss_btn = document.getElementById("toast-dismiss-button")
+const forms = document.querySelectorAll("form");
+
+try{
+    disable_form_click_submission;
+}
+catch(e){
+    forms.forEach((form) => {
+        form.addEventListener('click', e => {
+            form.submit();
+        })
+    })
+}
 
 toast_dismiss_btn.addEventListener('click', hide_toast);
 

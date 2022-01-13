@@ -1,13 +1,5 @@
-const pin_forms = document.querySelectorAll("form");
 const room_counter = document.querySelector(".room-counter");
 
-
-
-pin_forms.forEach((form)=>{
-    form.addEventListener('click', e => {
-        form.submit();
-    })
-})
 
 
 function update_ppl_counter(data){

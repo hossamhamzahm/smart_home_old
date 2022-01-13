@@ -33,7 +33,14 @@
             <% for(let light_pin of room.light_pins){ %> 
                 <section class="d-inline-flex justify-content-center col-12 col-md-6 col-lg-3 mt-3">
                     <section class="col-11 block-color p-3 me-2 rounded-3">
-                        <h5 class="d-inline-block mb-3">Lamp-<%= light_pin.pin_num %></h5>
+                        <% if(light_pin.name){ %>
+                        <h5 class="d-inline-block mb-0"><%= light_pin.name %></h5>
+                        <a href="/pins/<%= light_pin.id %>" class="bi bi-gear d-inline-block float-end" role="button"></a>
+                        <p class="mb-3 text-muted" title="Micro Controller Pin-<%= light_pin.pin_num %>">Pin-<%= light_pin.pin_num %></p>
+                        <% }else{ %>
+                        <h5 class="d-inline-block mb-3" title="Micro Controller Pin-<%= light_pin.pin_num %>">Lamp-<%= light_pin.pin_num %></h5>
+                        <a href="/pins/<%= light_pin.id %>" class="bi bi-gear d-inline-block float-end" role="button"></a>
+                        <% } %>  
                         <div class="d-flex justify-content-around align-items-center text-center">
                             <!-- <h6 class="d-inline-block display-6 col-9 me-1 lg-base">18&deg;C</h6> -->
 
@@ -62,7 +69,12 @@
             <% for(let outlet_pin of room.outlet_pins){ %>
                 <section class="d-inline-flex justify-content-center col-12 col-md-6 col-lg-3 mt-3">
                     <section class="col-11 block-color p-3 me-2 rounded-3">
-                        <h5 class="d-inline-block mb-3">Outlet-<%= outlet_pin.pin_num %></h5>
+                        <% if(outlet_pin.name){ %>
+                        <h5 class="d-inline-block mb-0"><%= outlet_pin.name %></h5>
+                        <p class="mb-3 text-muted" title="Micro Controller Pin-<%= outlet_pin.pin_num %>">Pin-<%= outlet_pin.pin_num %></p>
+                        <% }else{ %>
+                        <h5 class="d-inline-block mb-3" title="Micro Controller Pin-<%= outlet_pin_pin_num %>">Outlet-<%= outlet_pin.pin_num %></h5>
+                        <% } %>  
                         <div class="d-flex justify-content-around align-items-center text-center">
                             <% if(outlet_pin.state){ %> 
                                 <form class="bi bi-plug display-5 d-inline-block col-3" role="button"
@@ -84,6 +96,27 @@
                 </section>
             <% } %> 
 
+            <% for(let sensor_pin of room.sensor_pins){ %>
+                <section class="d-inline-flex justify-content-center col-12 col-md-6 col-lg-3 mt-3">
+                    <section class="col-11 block-color p-3 me-2 rounded-3">
+                        <% if(sensor_pin.name){ %>
+                        <h5 class="d-inline-block mb-0"><%= sensor_pin.name %> Sensor</h5>
+                        <p class="mb-3 text-muted" title="Micro Controller Pin-<%= sensor_pin.pin_num %>">Pin-<%= sensor_pin.pin_num %></p>
+                        <% }else{ %>
+                        <h5 class="d-inline-block mb-3" title="Micro Controller Pin-<%= sensor_pin.pin_num %>">Outlet-<%= sensor_pin.pin_num %></h5>
+                        <% } %>  
+                        <div class="d-flex justify-content-around align-items-center text-center">
+                            <form class="bi bi-activity display-5 d-inline-block col-3" role="button"
+                                action="/rooms/<%= room._id %>/pin/<%= sensor_pin.pin_num %>" method="post">
+                                <p class="footer-ele-stat">Enable outlet</p>
+                            </form>
+                        </div>
+                        <!-- <button class="btn btn-primary rounded-pill extra-small-btn mt-2">Full control</button> -->
+                        <!-- <i class="bi bi-thermometer-sun"></i>
+                                        <i class="bi bi-thermometer-snow"></i> -->
+                    </section>
+                </section>
+            <% } %> 
 
             <!-- <i class="bi bi-people display-5 d-inline-block col-3" role="button">
                 <p class="footer-ele-stat">counter <%= room.ppl_counter %>

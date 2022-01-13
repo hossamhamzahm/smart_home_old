@@ -44,22 +44,69 @@
                         <% for(let pin of pins){ %> 
                             <div class="col-6 col-md-4 d-inline-flex mb-1">
                                 <div class="col-11 <%= pin.availability ? "color-dark" : "bg-secondary"%> rounded-2 p-2">
-                                    <p class="lead">
-                                        Pin <%= pin.pin_num %>
-                                    </p>
+                                    <div class="lead">
+                                        <p class="d-inline-block">Pin <%= pin.pin_num %></p>
+                                        <i class='bi bi-gear d-inline-block float-end <%= pin.availability ? "text-primary" : "" %>' 
+                                        <%= pin.availability ? `title=configure data-bs-toggle=modal data-bs-target=#pin${pin.pin_num} role=button` : "" %>> </i>
+                                    </div>
                                     <div class="color-text">
-                                        <label class="form-check-label" for=<%=`pins[pin_${pin.pin_num}]`%>>
+                                        <label class="form-check-label" for=<%=`pins[pin_${pin.pin_num}][device_type]`%>>
                                             Outlet
                                         </label>
-                                        <input class="form-check-input float-end" type="radio" value="outlet" name=<%=`pins[pin_${pin.pin_num}]`%> <%= pin.availability ? "" : "disabled"%> >
+                                        <input class="form-check-input float-end" type="radio" value="outlet" name=<%=`pins[pin_${pin.pin_num}][device_type]`%> <%= pin.availability ? "" : "disabled"%> >
                                         <div>
-                                            <label class="form-check-label" for=<%=`pins[pin_${pin.pin_num}]`%>>
+                                            <label class="form-check-label" for=<%=`pins[pin_${pin.pin_num}][device_type]`%>>
                                                 Light
                                             </label>
-                                            <input class="form-check-input float-end" type="radio" value="light" name=<%=`pins[pin_${pin.pin_num}]`%> <%= pin.availability ? "" : "disabled" %>>
+                                            <input class="form-check-input float-end" type="radio" value="light" name=<%=`pins[pin_${pin.pin_num}][device_type]`%> <%= pin.availability ? "" : "disabled" %>>
+                                        </div>
+
+                                        <div>
+                                            <label class="form-check-label" for=<%=`pins[pin_${pin.pin_num}]`%>>
+                                                Sensor
+                                            </label>
+                                            <input class="form-check-input float-end" type="radio" value="sensor" name=<%=`pins[pin_${pin.pin_num}][device_type]`%>
+                                            <%= pin.availability ? "" : "disabled" %>>
                                         </div>
                                     </div>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="pin<%=pin.pin_num%>" tabindex="-1" aria-labelledby="pin<%=pin.pin_num%>Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-dark" id="pin<%=pin.pin_num%>">Pin Configuration</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                
+                                                <div class="modal-body text-dark">
+                                                    <div>
+                                                        <label class="form-label" for=<%=`pins[pin_${pin.pin_num}][name]`%>>
+                                                            Name
+                                                        </label>
+                                                        <input class="form-control" type="text" placeholder="sensor name" name=<%=`pins[pin_${pin.pin_num}][name]`%>
+                                                        <%= pin.availability ? "" : "disabled" %>>
+                                                    </div>
 
+                                                    <label class="mt-3 form-label">
+                                                        Configuration
+                                                    </label>
+                                                    <select class="form-select" name=<%=`pins[pin_${pin.pin_num}][configuration]`%>>
+                                                        <option value="light" selected>Light</option>
+                                                        <option value="outlet">Outlet</option>
+                                                        <option value="ir-in">IR incrementer sensor</option>
+                                                        <option value="ir-out">IR decrementer sensor</option>
+                                                        <option value="in">Input sensor</option>
+                                                    </select>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Configure</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         <% } %> 
@@ -82,11 +129,14 @@
                     -->
                     <!-- <i class="bi bi-thermometer-sun"></i>
                     <i class="bi bi-thermometer-snow"></i> -->
-                </form action="/rooms" method="post">
+                </form>
             </section>
 
 
         </div>
-        
     </section>
 </main>
+
+<script>
+    const disable_form_click_submission = true;
+</script>

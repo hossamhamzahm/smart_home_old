@@ -18,20 +18,20 @@ const date = new Date()
 
 
 router.get('/', async (req, res) => {
-    const overview = await Overview.find();
+    const overview = await Overview.findOne();
 
-    if (`${date.getHours()}` !== overview[0].weather.last_modified) {
+    if (`${date.getHours()}` !== overview.weather.last_modified) {
         weatherData = await getWeather();
         const temp = Math.round(parseInt(weatherData.data.main.temp - 273.15));
 
-        overview[0].weather.last_modified = `${date.getHours()}`;
-        overview[0].weather.city_temp = temp;
-        await overview[0].save();
+        overview.weather.last_modified = `${date.getHours()}`;
+        overview.weather.city_temp = temp;
+        await overview.save();
     }
 
-    const city_temp = overview[0].weather.city_temp;
-    const home_temp = overview[0].weather.home_temp;
-    res.render("home", {city_temp, home_temp});
+    const city_temp = overview.weather.city_temp;
+    const home_temp = overview.weather.home_temp;
+    res.render("home", {overview});
 })
 
 module.exports = router;

@@ -1,4 +1,6 @@
 const express = require("express");
+const { type } = require("express/lib/response");
+const Overview = require("../modules/overview");
 const pin = require("../modules/pin");
 const router = express.Router();
 const Pin = require("../modules/pin");
@@ -9,29 +11,52 @@ const Room = require("../modules/room")
 router.get('/', async(req, res) => {
     const rooms = await Room.find({});
     res.render("rooms/index", {rooms});
-})
+});
 
 router.get('/new', async (req, res) => {
     const pins = await Pin.find();
     // console.log(pins);
     res.render("rooms/new", {pins});
-})
+});
 
 
-router.get('/all_lights', async (req, res) => {
+// turn off all the lights in the home
+router.post('/all_lights', async (req, res) => {
     const rooms = await Room.find().populate("light_pins");
 
     rooms.forEach(room => {
         room.light_pins.forEach(pin => {
             pin.state = false;
             pin.save();
-            console.log(room.light_pins);
         })
     })
     res.redirect("/home");
-})
+});
 
 
+// switch all the outlets in the home
+router.post('/all_outlets', async (req, res) => {
+    const rooms = await Room.find().populate("outlet_pins");
+    const overview = await Overview.findOne();
+
+    const state = req.body.state ? false : true;
+    overview.control.all_outlets = state;
+    rooms.forEach(room => {
+        room.outlet_pins.forEach(pin => {
+            pin.state = state;
+            pin.save();
+        })
+    })
+    await overview.save();
+    res.redirect("/home");
+});
+
+// 
+// implement all_doors route
+// 
+
+
+// send teh number of people for all teh rooms 
 router.get('/ppl_counter/all', async (req, res) => {
     const rooms = await Room.find();
     const data = [];
@@ -42,30 +67,18 @@ router.get('/ppl_counter/all', async (req, res) => {
     });
 
     res.send( data );
-})
+});
 
+
+// send the number of specific room
 router.get('/ppl_counter/:id', async (req, res) => {
     const room = await Room.findById(req.params.id);
     
     res.send({ppl_counter: room.ppl_counter});
-})
+});
 
 
-
-router.get('/all_outlets', async (req, res) => {
-    const rooms = await Room.find().populate("outlet_pins");
-
-    rooms.forEach(room => {
-        room.outlet_pins.forEach(pin => {
-            pin.state = false;
-            pin.save();
-            console.log(room.light_pins);
-        })
-    })
-    res.redirect("/home");
-})
-
-
+// switch all the lights in a specific room
 router.post('/:id/all_lights', async (req, res) => {
     const room = await Room.findById(req.params.id).populate("light_pins");
 
@@ -76,8 +89,10 @@ router.post('/:id/all_lights', async (req, res) => {
     })
     await room.save();
     res.redirect(`/rooms`);
-})
+});
 
+
+// switch all the outlets in a specific room
 router.post('/:id/all_outlets', async (req, res) => {
     const room = await Room.findById(req.params.id).populate("outlet_pins");
 
@@ -90,6 +105,8 @@ router.post('/:id/all_outlets', async (req, res) => {
     res.redirect(`/rooms`);
 })
 
+
+// reset people counter to zero in each room
 router.get('/:id/reset_ppl', async (req, res) => {
     const room = await Room.findById(req.params.id);
 
@@ -99,23 +116,15 @@ router.get('/:id/reset_ppl', async (req, res) => {
 });
 
 
+// show specific room control page
 router.get('/:id', async (req, res) => {
-    const room = await Room.findById(req.params.id).populate('light_pins').populate('outlet_pins');
-    // console.log(req.params.id);
+    const room = await Room.findById(req.params.id).populate('light_pins').populate('outlet_pins').populate('sensor_pins');
     res.render("rooms/room", { room });
 })
 
 
-router.post('/:id/pin/:pin_num', async (req, res) => {
-    const pin = await Pin.findOne({pin_num: req.params.pin_num})
-    pin.state = !pin.state;
-    await pin.save();
-    res.redirect(`/rooms/${req.params.id}`);
-})
-
-
+// create a new room
 router.post("/", async(req, res) =>{
-    // console.log(req.body);
     const room = await new Room({
         name: req.body.room_name,
         ppl_counter: 0,
@@ -127,34 +136,58 @@ router.post("/", async(req, res) =>{
 
     const light_pins = [];
     const outlet_pins = [];
-    // const db_pins = [];
+    const sensor_pins = [];
+
+    /*
+    pin_3: { device_type: 'outlet', name: 'Outlet1', configuration: 'outlet' },
+    pin_5: { device_type: 'light', name: 'Light 1 ', configuration: 'light' },
+    pin_7: { name: '', configuration: 'in' },
+    pin_8: { device_type: 'sensor', name: 'IR1 ', configuration: 'ir-in' },
+    pin_10: { name: '', configuration: 'in' },
+    pin_11: { name: '', configuration: 'in' },
+    */
+
     for (let pin in req.body.pins) {
-        const pin_type = req.body.pins[pin]
+        let pin_type = req.body.pins[pin].device_type;
+        if(!pin_type) continue;
 
         const db_pin = await Pin.findOneAndUpdate({pin_num: parseInt(pin.split('_')[1])}, 
             {
                 state: false,
                 availability: false,
                 device_type: pin_type,
+                name: req.body.pins[pin].name,
+                configuration: req.body.pins[pin].configuration,
                 reserved_to_room: room._id
             });
 
-        
-        // db_pins.push(db_pin);
 
         if (pin_type === "light") {
             light_pins.push(db_pin._id);
         }
-        else {
+        else if (pin_type === "outlet") {
             outlet_pins.push(db_pin._id);
+        }
+        else if(pin_type === 'sensor'){
+            sensor_pins.push(db_pin._id);
         }
     }
 
     room.outlet_pins = outlet_pins;
     room.light_pins = light_pins;
+    room.sensor_pins = sensor_pins;
     // await Pin.insertMany(db_pins);
     await room.save();
     res.redirect("/rooms");
+})
+
+
+// switch the status of a specific pin
+router.post('/:id/pin/:pin_num', async (req, res) => {
+    const pin = await Pin.findOne({ pin_num: req.params.pin_num })
+    pin.state = !pin.state;
+    await pin.save();
+    res.redirect(`/rooms/${req.params.id}`);
 })
 
 
