@@ -1,6 +1,3 @@
-# smart_home
-This is a smart home system for controling raspbery pi pins from a web page
-
 # [Smart Home](https://ecen-smart-home.herokuapp.com/) 
 
 [Smart Home](https://ecen-smart-home.herokuapp.com/) is a full-stack web app that gives full controll to all home lights, outlets, and appliances from any device connected to the internet.
